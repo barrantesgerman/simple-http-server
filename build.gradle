@@ -1,0 +1,43 @@
+plugins {
+    id 'java' 
+    id 'application' 
+}
+
+group = 'org.habv'
+description = 'Simple Http Server'
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+startScripts.enabled = false
+distTar.enabled = false
+distZip.enabled = false
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+}
+
+application {
+    mainClass = 'org.habv.shs.Launcher' 
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+task copyRuntimeLibs(type: Copy) {  
+    into "$buildDir/libs/lib/"
+    from configurations.runtimeClasspath
+}
+
+assemble.dependsOn copyRuntimeLibs
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'org.habv.shs.Launcher'
+        attributes 'Implementation-Title': project.name
+        attributes 'Implementation-Version': project.version
+        attributes 'Class-Path' : configurations.runtimeClasspath.collect { 'lib/' + it.getName() }.join(' ')
+    }
+}
