@@ -13,13 +13,22 @@ public enum MimeType {
     JPG("image/jpeg"),
     JPEG("image/jpeg"),
     PNG("image/png"),
+    ICO("image/x-icon"),
     CSS("text/css"),
     HTM("text/html"),
     HTML("text/html"),
-    TEXT("text/plain"),
+    TXT("text/plain"),
+    CSV("text/csv"),
     JS("application/javascript"),
     JSON("application/json"),
+    XML("application/xml"),
+    PDF("application/pdf"),
+    ZIP("application/zip"),
+    RAR("application/x-rar-compressed"),
+    JAR("application/java-archive"),
     OTF("font/opentype"),
+    WOFF("font/woff"),
+    WOFF2("font/woff2"),
     DEFAULT("application/octet-stream");
 
     private final String contentType;
